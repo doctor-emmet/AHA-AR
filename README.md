@@ -1,13 +1,12 @@
 # AHA-AR#
 
-==========================================================================================================================================
 
 Official Repo for the AHA AR project. 
 
 Folder Structure:
 
--Beta
- -Completed files pending approval from Eleni, Abey, David and Rita
+*Beta
+ *Completed files pending approval from Eleni, Abey, David and Rita
           * Emmet
               * Emmet's testing grounds
           * Jaz
