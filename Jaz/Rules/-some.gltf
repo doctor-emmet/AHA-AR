@@ -90,50 +90,6 @@
         }, 
         {
             "bufferView" : 6, 
-            "componentType" : 5121, 
-            "count" : 6, 
-            "max" : [
-                3
-            ], 
-            "min" : [
-                0
-            ], 
-            "type" : "SCALAR"
-        }, 
-        {
-            "bufferView" : 7, 
-            "componentType" : 5126, 
-            "count" : 4, 
-            "max" : [
-                1.0, 
-                0.0, 
-                1.0
-            ], 
-            "min" : [
-                -1.0, 
-                0.0, 
-                -1.0
-            ], 
-            "type" : "VEC3"
-        }, 
-        {
-            "bufferView" : 8, 
-            "componentType" : 5126, 
-            "count" : 4, 
-            "max" : [
-                0.0, 
-                1.0, 
-                -0.0
-            ], 
-            "min" : [
-                0.0, 
-                1.0, 
-                -0.0
-            ], 
-            "type" : "VEC3"
-        }, 
-        {
-            "bufferView" : 9, 
             "componentType" : 5126, 
             "count" : 7, 
             "max" : [
@@ -145,7 +101,7 @@
             "type" : "SCALAR"
         }, 
         {
-            "bufferView" : 10, 
+            "bufferView" : 7, 
             "componentType" : 5126, 
             "count" : 21, 
             "max" : [
@@ -161,7 +117,7 @@
             "type" : "VEC3"
         }, 
         {
-            "bufferView" : 11, 
+            "bufferView" : 8, 
             "componentType" : 5126, 
             "count" : 40, 
             "max" : [
@@ -173,7 +129,7 @@
             "type" : "SCALAR"
         }, 
         {
-            "bufferView" : 12, 
+            "bufferView" : 9, 
             "componentType" : 5126, 
             "count" : 40, 
             "max" : [
@@ -191,7 +147,7 @@
             "type" : "VEC4"
         }, 
         {
-            "bufferView" : 13, 
+            "bufferView" : 10, 
             "componentType" : 5126, 
             "count" : 7, 
             "max" : [
@@ -203,7 +159,7 @@
             "type" : "SCALAR"
         }, 
         {
-            "bufferView" : 14, 
+            "bufferView" : 11, 
             "componentType" : 5126, 
             "count" : 21, 
             "max" : [
@@ -225,40 +181,40 @@
                 {
                     "sampler" : 0, 
                     "target" : {
-                        "node" : 3, 
+                        "node" : 2, 
                         "path" : "translation"
                     }
                 }, 
                 {
                     "sampler" : 1, 
                     "target" : {
-                        "node" : 3, 
+                        "node" : 2, 
                         "path" : "rotation"
                     }
                 }, 
                 {
                     "sampler" : 2, 
                     "target" : {
-                        "node" : 3, 
+                        "node" : 2, 
                         "path" : "scale"
                     }
                 }
             ], 
             "samplers" : [
                 {
-                    "input" : 9, 
+                    "input" : 6, 
                     "interpolation" : "CUBICSPLINE", 
-                    "output" : 10
+                    "output" : 7
                 }, 
                 {
-                    "input" : 11, 
+                    "input" : 8, 
                     "interpolation" : "LINEAR", 
-                    "output" : 12
+                    "output" : 9
                 }, 
                 {
-                    "input" : 13, 
+                    "input" : 10, 
                     "interpolation" : "CUBICSPLINE", 
-                    "output" : 14
+                    "output" : 11
                 }
             ]
         }
@@ -306,56 +262,38 @@
         }, 
         {
             "buffer" : 0, 
-            "byteLength" : 6, 
-            "byteOffset" : 870504, 
-            "target" : 34963
-        }, 
-        {
-            "buffer" : 0, 
-            "byteLength" : 48, 
-            "byteOffset" : 870512, 
-            "target" : 34962
-        }, 
-        {
-            "buffer" : 0, 
-            "byteLength" : 48, 
-            "byteOffset" : 870560, 
-            "target" : 34962
-        }, 
-        {
-            "buffer" : 0, 
             "byteLength" : 28, 
-            "byteOffset" : 870608
+            "byteOffset" : 870504
         }, 
         {
             "buffer" : 0, 
             "byteLength" : 252, 
-            "byteOffset" : 870636
+            "byteOffset" : 870532
         }, 
         {
             "buffer" : 0, 
             "byteLength" : 160, 
-            "byteOffset" : 870888
+            "byteOffset" : 870784
         }, 
         {
             "buffer" : 0, 
             "byteLength" : 640, 
-            "byteOffset" : 871048
+            "byteOffset" : 870944
         }, 
         {
             "buffer" : 0, 
             "byteLength" : 28, 
-            "byteOffset" : 871688
+            "byteOffset" : 871584
         }, 
         {
             "buffer" : 0, 
             "byteLength" : 252, 
-            "byteOffset" : 871716
+            "byteOffset" : 871612
         }
     ], 
     "buffers" : [
         {
-            "byteLength" : 871968, 
+            "byteLength" : 871864, 
             "uri" : "-some.bin"
         }
     ], 
@@ -399,35 +337,9 @@
                     "material" : 0
                 }
             ]
-        }, 
-        {
-            "name" : "Plane", 
-            "primitives" : [
-                {
-                    "attributes" : {
-                        "NORMAL" : 8, 
-                        "POSITION" : 7
-                    }, 
-                    "indices" : 6
-                }
-            ]
         }
     ], 
     "nodes" : [
-        {
-            "mesh" : 2, 
-            "name" : "Plane", 
-            "scale" : [
-                3.750110387802124, 
-                3.750110387802124, 
-                3.750110387802124
-            ], 
-            "translation" : [
-                2.4469594955444336, 
-                -0.47769463062286377, 
-                0.8468594551086426
-            ]
-        }, 
         {
             "name" : "Sun", 
             "translation" : [
@@ -467,10 +379,9 @@
         {
             "name" : "Scene", 
             "nodes" : [
-                1, 
                 0, 
-                3, 
-                2
+                2, 
+                1
             ]
         }
     ]
