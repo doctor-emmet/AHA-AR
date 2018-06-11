@@ -1,0 +1,19 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<a id="OpenDialog" href="#">Click here to open dialog</a>
+    <div id="dialog" title="Dialog Title">
+        <p>test</p>
+    </div>
+	
+	<script>
+	
+	$(document).ready(function () {
+            $("#OpenDialog").click(function () {
+                //$("#dialog").dialog({modal: true, height: 590, width: 1005 });
+                var w = window.open("https://cdn.rawgit.com/doctor-emmet/AHA-AR/master/Emmet/ModelTest3.html", "popupWindow", "width=600, height=400, scrollbars=yes");
+                var $w = $(w.document.body);
+                $w.html("<textarea></textarea>");
+            });
+        });
+		
+		</script>
