@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+
+<meta name="apple-mobile-web-app-capable" content="yes">
+
+<!-- include aframe -->   
+<script src="https://aframe.io/releases/0.8.0/aframe.min.js"></script>
+<script src="https://rawgit.com/donmccurdy/aframe-extras/master/dist/aframe-extras.loaders.min.js"></script>
+<script src="https://cdn.rawgit.com/jeromeetienne/AR.js/1.5.1/aframe/build/aframe-ar.js"></script>
+
+<!--JQuery Scripts-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<body style='margin : 0px; overflow: hidden; font-family: Monospace;'><div style='position: fixed; top: 10px; width:100%; text-align: center;'>
+</div>
+		
+	<!-- To keep content on screen then have the entity for the model above the hiro and not within it -->
+	
+	
+	
+	<!-- enable artoolkit on this scene -->
+	<a-scene embedded arjs='sourceType: webcam; detectionMode: mono; maxDetectionRate: 30; canvasWidth: 240; canvasHeight: 180; debugUIEnabled: false;' vr-mode-ui="enabled: false">
+ 
+ <a-assets>				
+		<a-asset-item id="coin" src="https://cdn.rawgit.com/doctor-emmet/AHA-AR/master/Beta/Models/Vowels/bee/bee.gltf"></a-asset-item> 
+	</a-assets>
+ 
+	<a-marker-camera preset='custom'
+				type='pattern'
+				patternURL='wwl.patt'>
+				
+		<a-entity cursor="rayOrigin: mouse">  <!-- Grandparent entity -->
+					
+				<a-animation
+					begin="show-letter"
+					attribute="rotation"
+					dur="600"
+					from="0 0 0"
+					to="0 180 0"
+					repeat="0">
+				</a-animation>
+				
+				<a-animation 
+					begin="hide-letter"
+					attribute="rotation"
+					dur="600"
+					from="0 180 0"
+					to="0 360 0"
+					repeat="0">
+				</a-animation>
+				
+				<a-animation
+					begin="show-letter-mobile"
+					attribute="rotation"
+					dur="600"
+					from="0 0 0"
+					to="0 0 180"
+					repeat="0">
+				</a-animation>
+				
+				<a-animation 
+					begin="hide-letter-mobile"
+					attribute="rotation"
+					dur="600"
+					from="0 0 180"
+					to="0 0 360"
+					repeat="0">
+				</a-animation>
+				
+					<a-entity gltf-model="#coin" model-animator rotation-change
+						scale="0.25 0.25 0.25" 
+						position="0 0.5 0"
+						rotation="0 0 0"
+						animation-mixer="loop:repeat">
+					</a-entity>
+		
+				
+			</a-entity>
+		</a-marker-camera>
+		
+	</a-scene>
+
+<script src="https://cdn.rawgit.com/hgoebl/mobile-detect.js/master/mobile-detect.js"></script>
+    	
+	<script>	
+
+	
+		$(document).ready(function () {
+	//		document.getElementsByClassName("rs-base").style.display = "none";
+	console.log("Boop");
+			$('.rs-base').hide().delay(800);
+		});
+	
+	
+		var model = document.getElementById('model-animator');
+		var showingLetter = false;
+		var mobileDevice = true;
+	
+		var md = new MobileDetect(
+    'Mozilla/5.0 (Linux; U; Android 4.0.3; en-in; SonyEricssonMT11i' +
+    ' Build/4.1.A.0.562) AppleWebKit/534.30 (KHTML, like Gecko)' +
+    ' Version/4.0 Mobile Safari/534.30');
+    // ... see below
+		if (!md.tablet() == null) {
+		//	location.href = (md.mobileGrade() === 'A') ? '/mobile/' : '/lynx/';
+			mobileDevice = true;
+			alert("Tablet");
+		}
+		else if (!md.mobile() == 'Sony') {
+		//	location.href = (md.mobileGrade() === 'A') ? '/mobile/' : '/lynx/';
+			mobileDevice = true;
+			alert("Mobile");
+		}
+		else if (!md.phone() == 'Sony') {
+		//	location.href = (md.mobileGrade() === 'A') ? '/mobile/' : '/lynx/';
+			mobileDevice = true;
+			alert("Phone");
+		}
+		else if (!md.userAgent() == 'Safari') {
+		//	location.href = (md.mobileGrade() === 'A') ? '/mobile/' : '/lynx/';
+			mobileDevice = true;
+			alert("Safari");
+		}
+		
+		else if (!md.os() == 'AndroidOS') {
+		//	location.href = (md.mobileGrade() === 'A') ? '/mobile/' : '/lynx/';
+			mobileDevice = true;
+			alert("Android");
+		}
+		else if (!md.is('iPhone') == false) {
+		//	location.href = (md.mobileGrade() === 'A') ? '/mobile/' : '/lynx/';
+			mobileDevice = true;
+			alert("iPhone");
+		}
+		else if (!md.is('bot') == false) {
+		//	location.href = (md.mobileGrade() === 'A') ? '/mobile/' : '/lynx/';
+			mobileDevice = true;
+			alert("Bot");
+		}else if (!md.match('playsation|xbox') == false) {
+		//	location.href = (md.mobileGrade() === 'A') ? '/mobile/' : '/lynx/';
+			mobileDevice = true;
+			alert("Xbone");
+		}else if (!md.version('Webkit') == '534.3') {
+		//	location.href = (md.mobileGrade() === 'A') ? '/mobile/' : '/lynx/';
+			mobileDevice = true;
+			alert("Bot");
+		}else if (!md.versionStr('Build') == '4.1.A.0.562) {
+		//	location.href = (md.mobileGrade() === 'A') ? '/mobile/' : '/lynx/';
+			mobileDevice = true;
+			alert("Vuild");
+		}else{
+			mobileDevice = false;
+			alert("False");
+		}
+		
+		
+		
+console.log( md.mobile() );          // 'Sony'
+console.log( md.phone() );           // 'Sony'
+console.log( md.tablet() );          // null
+console.log( md.userAgent() );       // 'Safari'
+console.log( md.os() );              // 'AndroidOS'
+console.log( md.is('iPhone') );      // false
+console.log( md.is('bot') );         // false
+console.log( md.version('Webkit') );         // 534.3
+console.log( md.versionStr('Build') );       // '4.1.A.0.562'
+console.log( md.match('playstation|xbox') );
+
+		function setVisible(item) {
+		  item.setAttribute('visible', 'true');
+		}
+
+		function setInvisible(item) {
+		  item.setAttribute('visible', 'false');
+		}
+		
+		//This works but also need an animation-rotation change and a height change maybe
+		if(!mobileDevice){
+			AFRAME.registerComponent('rotation-change', {
+				
+				init: function () {
+						console.log("She working");
+						mobileDevice = false
+						this.el.setAttribute('rotation', '-90 0 0')
+					}
+			});
+		}
+	
+		var audio = new Audio('bee2.mp3');
+		var played = false;
+		var setActive = false;
+		
+			
+		function playAudio() { 
+			audio.play(); 
+		} 
+		
+		AFRAME.registerComponent('model-animator', {
+		  init: function () {
+			this.el.addEventListener('click', function (evt) {
+			  if (!showingLetter && mobileDevice) 
+			  {
+				this.emit('show-letter');
+				 playAudio();
+			  }
+			  else if(showingLetter && mobileDevice) 
+			  {
+			  
+				  this.emit('hide-letter');
+				  showingLetter = !showingLetter;
+				  playAudio();
+			  }
+			  else if(!showingLetter && !mobileDevice) 
+			  {
+				console.log("THISSSSSSS");
+				  this.emit('show-letter-mobile');
+				  showingLetter = !showingLetter;
+				  playAudio();
+			  }
+			  else
+			  {
+				
+				  this.emit('hide-letter-mobile');
+				  showingLetter = !showingLetter;
+				  playAudio();
+			  }
+			  
+			});
+		  }
+		});
+		
+		AFRAME.registerComponent('cursor-animator', {
+		  init: function () {
+			this.el.addEventListener('click', function (evt) {
+			  
+			  playAudio();
+			  //Maybe add a note here to change the rotation of the model? 
+			});
+		  }
+		});
+		
+	</script>
+</body>
+</html>
