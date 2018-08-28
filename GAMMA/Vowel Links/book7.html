@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+
+<meta name="apple-mobile-web-app-capable" content="yes">
+
+<!-- include aframe -->   
+<script src="https://aframe.io/releases/0.8.2/aframe.min.js"></script>
+<script src="https://rawgit.com/donmccurdy/aframe-extras/master/dist/aframe-extras.loaders.min.js"></script>
+<script src="https://cdn.rawgit.com/jeromeetienne/AR.js/1.6.0/aframe/build/aframe-ar.js"></script>
+<script src="https://cdn.rawgit.com/hgoebl/mobile-detect.js/master/mobile-detect.js"></script>
+
+<!--JQuery Scripts-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<body style='margin : 0px; overflow: hidden; font-family: Monospace;'><div style='position: fixed; top: 10px; width:100%; text-align: center;'>
+</div>
+		
+	<!-- To keep content on screen then have the entity for the model above the hiro and not within it -->
+	
+	
+	
+	<!-- enable artoolkit on this scene -->
+	<a-scene renderer="gammaOutput: true" embedded arjs='sourceType: webcam; detectionMode: mono; matrixCodeType: 3x3; detectionMode: mono_and_matrix; maxDetectionRate: 30; canvasWidth: 240; canvasHeight: 180; debugUIEnabled: false;' vr-mode-ui="enabled: false">
+ 
+ <a-assets>				
+		<a-asset-item id="coin" src="https://cdn.rawgit.com/doctor-emmet/AHA-AR/master/GAMMA/Vowels/book7.gltf"></a-asset-item> 
+	</a-assets>
+ 
+	<a-marker type='barcode' value='7'>
+				
+		<a-entity cursor="rayOrigin: mouse">  <!-- Grandparent entity -->
+					
+				<a-animation
+					begin="show-letter"
+					attribute="rotation"
+					dur="600"
+					from="0 0 0"
+					to="90 180 0"
+					repeat="0">
+				</a-animation>
+				
+				<a-animation 
+					begin="hide-letter"
+					attribute="rotation"
+					dur="600"
+					from="90 180 0"
+					to="0 360 0"
+					repeat="0">
+				</a-animation>
+				
+				<a-animation
+					begin="show-letter-mobile"
+					attribute="rotation"
+					dur="600"
+					from="0 0 0"
+					to="0 0 180"
+					repeat="0">
+				</a-animation>
+				
+				<a-animation 
+					begin="hide-letter-mobile"
+					attribute="rotation"
+					dur="600"
+					from="0 0 180"
+					to="0 0 360"
+					repeat="0">
+				</a-animation>
+				
+					<a-entity gltf-model="#coin" model-animator rotation-change
+						scale="0.75 0.75 0.75" 
+						position="0 0.5 -0.5"
+						rotation="-50 0 0"
+						animation-mixer="loop:repeat">
+					</a-entity>
+		
+				
+			</a-entity>
+		</a-marker>
+	<a-entity camera>
+	</a-entity>
+		
+	</a-scene>	
+		<script>	
+
+
+	$(document).ready(function () {
+	// document.getElementsByClassName("rs-base").style.display = "none";
+	console.log("Boop");
+	$('.rs-base').hide().delay(800);
+	});
+
+
+	var model = document.getElementById('model-animator');
+	var showingLetter = false;
+	var mobileDevice = true;
+
+	var md = new MobileDetect(window.navigator.userAgent);
+
+	if (md.mobile() == null){
+	mobileDevice = false
+
+	}else{
+	mobileDevice = true; 
+	}
+
+
+	function setVisible(item) {
+	 item.setAttribute('visible', 'true');
+	}
+
+	function setInvisible(item) {
+	 item.setAttribute('visible', 'false');
+	}
+
+	if (!mobileDevice){
+	AFRAME.registerComponent('rotation-change', {
+
+	init: function () {
+	console.log("She working");
+	mobileDevice = false
+	this.el.setAttribute('rotation', '-90 0 0')
+	}
+	});
+
+	}
+
+
+	var audio = new Audio('bee2.mp3');
+	var played = false;
+	var setActive = false;
+
+
+	function playAudio() { 
+		audio.play(); 
+	} 
+
+	AFRAME.registerComponent('model-animator', {
+	 init: function () {
+	this.el.addEventListener('click', function (evt) {
+	 if (!showingLetter && mobileDevice) 
+	 {
+	this.emit('show-letter');
+	showingLetter = !showingLetter;
+		playAudio();
+	 }
+	 else if(showingLetter && mobileDevice) 
+	 {
+	 
+	 this.emit('hide-letter');
+	 showingLetter = !showingLetter;
+		playAudio();
+	 }
+	 else if(!showingLetter && !mobileDevice) 
+	 {
+	console.log("THISSSSSSS");
+	 this.emit('show-letter-mobile');
+	 showingLetter = !showingLetter;
+		playAudio();
+	 }
+	 else
+	 {
+
+	 this.emit('hide-letter-mobile');
+	 showingLetter = !showingLetter;
+		playAudio();
+	 }
+	 
+	});
+	 }
+	});
+
+	AFRAME.registerComponent('cursor-animator', {
+	 init: function () {
+	this.el.addEventListener('click', function (evt) {
+	 
+	 playAudio();
+	 //Maybe add a note here to change the rotation of the model? 
+	});
+	 }
+	});
+
+	</script>
+</body>
+</html>
