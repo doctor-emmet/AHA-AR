@@ -1,0 +1,77 @@
+<!doctype HTML>
+<html>
+<script src="https://aframe.io/releases/0.8.2/aframe.min.js"></script>
+<script src="https://rawgit.com/donmccurdy/aframe-extras/master/dist/aframe-extras.loaders.min.js"></script>
+<script src="https://cdn.rawgit.com/jeromeetienne/AR.js/1.6.0/aframe/build/aframe-ar.js"></script>
+<!--JQuery Scripts-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<body style='margin : 0px; overflow: hidden;'>
+	<a-scene renderer="gammaOutput: true" embedded arjs='sourceType: webcam; detectionMode: mono; matrixCodeType: 3x3; detectionMode: mono_and_matrix; maxDetectionRate: 30; canvasWidth: 240; canvasHeight: 180; debugUIEnabled: false;' vr-mode-ui="enabled: false">
+  <a-assets>				
+ 		<a-asset-item id="model" src="https://cdn.rawgit.com/doctor-emmet/AHA-AR/master/GAMMA/Level%207/tele.gltf" ></a-asset-item> 
+ 	</a-assets>
+ 
+   <a-marker type='barcode' value='7'>
+		
+		<a-entity gltf-model="#model" model-animator rotation-change
+			scale="1 1 1" 
+			position="-1 0.5 -1"
+			rotation="-50 0 0"
+			animation-mixer="loop:repeat">
+		</a-entity>
+		
+      
+    </a-marker>
+
+  </a-scene>
+  
+	<script src="https://cdn.rawgit.com/hgoebl/mobile-detect.js/master/mobile-detect.js"></script>
+	<script>	
+
+	
+		jQuery(document).ready(function () {
+	//		document.getElementsByClassName("rs-base").style.display = "none";
+	console.log("Boop");
+			jQuery('.rs-base').hide().delay(800);
+		});
+	
+	
+		var model = document.getElementById('model-animator');
+		var showingLetter = false;
+		var mobileDevice = true;
+	
+		var md = new MobileDetect(window.navigator.userAgent);
+		
+	
+		if(md.mobile() == null){
+			mobileDevice = false
+				
+		}else{
+			mobileDevice = true; 
+		}
+		
+
+		function setVisible(item) {
+		  item.setAttribute('visible', 'true');
+		}
+
+		function setInvisible(item) {
+		  item.setAttribute('visible', 'false');
+		}
+		
+		//This works but also need an animation-rotation change and a height change maybe
+		if(!mobileDevice){
+			AFRAME.registerComponent('rotation-change', {
+				
+				init: function () {
+						mobileDevice = false
+						this.el.setAttribute('rotation', '-90 0 0')
+						this.el.setAttribute('position', '-1 0 -1'); //computer
+					}
+			});
+		}
+	
+	</script>
+</body>
+</html>
